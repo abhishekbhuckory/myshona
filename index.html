@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Baby 💜</title>
+    <style>
+        /* --- General Styles & Background --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- Floating Elements Container --- */
+        .floating-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- Main Card --- */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px 50px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(142, 68, 173, 0.2);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 10;
+            animation: floatCard 4s ease-in-out infinite;
+            max-width: 90%;
+            width: 450px;
+        }
+
+        h1 {
+            color: #4a148c;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #7b1fa2;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            color: #9c27b0;
+            margin-top: 15px;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* --- Airplane & Banner Animation --- */
+        .airplane-container {
+            position: absolute;
+            top: 15%;
+            left: -350px; /* Start off-screen */
+            display: flex;
+            align-items: center;
+            z-index: 5;
+            animation: flyAcross 12s linear infinite;
+        }
+
+        .airplane {
+            font-size: 2.5rem;
+            transform: rotate(15deg);
+        }
+
+        .banner {
+            background: #ab47bc;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px 4px 4px 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            white-space: nowrap;
+            position: relative;
+            margin-left: 5px;
+            border-left: 3px dashed #f3e5f5;
+        }
+
+        /* --- Keyframes Animations --- */
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes flyAcross {
+            0% {
+                left: -350px;
+                top: 15%;
+            }
+            50% {
+                top: 25%; /* Slight dip in flight */
+            }
+            100% {
+                left: 100%;
+                top: 10%;
+            }
+        }
+
+        /* Generated Floating Items */
+        .float-item {
+            position: absolute;
+            bottom: -50px;
+            opacity: 0;
+            animation: floatUp 8s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Airplane with Text Banner -->
+    <div class="airplane-container">
+        <div class="airplane">✈️</div>
+        <div class="banner">I am coming to you soon! ✨</div>
+    </div>
+
+    <!-- Main Apology Card -->
+    <div class="card">
+        <h1>I am sorry, baby 🥺</h1>
+        <p>I love you so much</p>
+        <div class="heart-icon">💜</div>
+    </div>
+
+    <!-- Container for floating elements -->
+    <div class="floating-container" id="floatingContainer"></div>
+
+    <script>
+        // Array of items to float in the background (Purple hearts and UK Flags)
+        const items = ['💜', 'My Baby Narmeen', '🔮', '✨', '🪻','Shona','Bébé','🐝'];
+        const container = document.getElementById('floatingContainer');
+
+        function createFloatingItem() {
+            const item = document.createElement('div');
+            item.classList.add('float-item');
+            
+            // Randomly select an emoji from the array
+            item.innerText = items[Math.floor(Math.random() * items.length)];
+            
+            // Randomize horizontal position (0 to 100% of viewport width)
+            item.style.left = Math.random() * 100 + 'vw';
+            
+            // Randomize size (between 1.5rem and 3rem)
+            const size = (Math.random() * 1.5) + 1.5;
+            item.style.fontSize = `${size}rem`;
+            
+            // Randomize animation duration to make it look natural (between 6s and 12s)
+            const duration = (Math.random() * 6) + 6;
+            item.style.animationDuration = `${duration}s`;
+            
+            // Randomize animation delay so they don't all start at once
+            item.style.animationDelay = `${Math.random() * 5}s`;
+
+            container.appendChild(item);
+
+            // Remove element after animation finishes to keep the DOM clean
+            setTimeout(() => {
+                item.remove();
+            }, (duration + 5) * 1000);
+        }
+
+        // Generate initial batch of floating elements
+        for (let i = 0; i < 20; i++) {
+            createFloatingItem();
+        }
+
+        // Keep generating new elements over time
+        setInterval(createFloatingItem, 600);
+    </script>
+</body>
+</html>
