@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>I'm Sorry Baby ❤️</title>
+<title>My Baby ❤️</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -52,12 +52,31 @@ button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;f
 <button onclick="openSnapchat()">Forgive Me? 🥺💗</button>
 </div>
 <script>
-const txt="Every love story is beautiful... but ours is my favorite ❤️";let i=0;
-(function t(){if(i<txt.length){typing.textContent+=txt[i++];setTimeout(t,60)}})();
-for(let i=0;i<35;i++){let e=document.createElement('div');e.className='heart';e.textContent=Math.random()>.5?'❤':'💖';e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*24)+'px';e.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(e);}
-for(let i=0;i<50;i++){let s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';document.body.appendChild(s);}
-for(let i=0;i<20;i++){let p=document.createElement('div');p.className='petal';p.textContent='🌹';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(p);}
-for(let i=0;i<3;i++){let st=document.createElement('div');st.className='star';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
-function openSnapchat(){const username="bhxvesh11";location.href=`snapchat://add/${username}`;setTimeout(()=>location.href=`https://www.snapchat.com/add/${username}`,1800);}
-</script>
+    const txt="Every love story is beautiful... but ours is my favorite ❤️";let i=0;
+    (function t(){if(i<txt.length){typing.textContent+=txt[i++];setTimeout(t,60)}})();
+    
+    // Particle generation animations
+    for(let i=0;i<35;i++){let e=document.createElement('div');e.className='heart';e.textContent=Math.random()>.5?'❤':'💖';e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*24)+'px';e.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(e);}
+    for(let i=0;i<50;i++){let s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';document.body.appendChild(s);}
+    for(let i=0;i<20;i++){let p=document.createElement('div');p.className='petal';p.textContent='🌹';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(p);}
+    for(let i=0;i<3;i++){let st=document.createElement('div');st.className='star';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
+    
+    // FIXED SNAPCHAT FUNCTION
+    function openSnapchat(){
+        const username = "bhxvesh11"; // <-- Make sure to replace this with your actual username!
+        const isSnapchat = /Snapchat/i.test(navigator.userAgent);
+        
+        if (isSnapchat) {
+            // If already inside Snapchat, just route via the standard web URL. 
+            // The app's browser will natively capture this and open your profile.
+            window.location.href = `https://www.snapchat.com/add/${username}`;
+        } else {
+            // Fallback for external browsers (Safari, Chrome, etc.)
+            window.location.href = `snapchat://add/${username}`;
+            setTimeout(() => {
+                window.location.href = `https://www.snapchat.com/add/${username}`;
+            }, 1800);
+        }
+    }
+    </script>
 </body></html>
