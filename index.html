@@ -1,215 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Sorry, Baby 💜</title>
-    <style>
-        /* --- General Styles & Background --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        /* --- Floating Elements Container --- */
-        .floating-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* --- Main Card --- */
-        .card {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 40px 50px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(142, 68, 173, 0.2);
-            text-align: center;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            z-index: 10;
-            animation: floatCard 4s ease-in-out infinite;
-            max-width: 90%;
-            width: 450px;
-        }
-
-        h1 {
-            color: #4a148c;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        p {
-            color: #7b1fa2;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .heart-icon {
-            font-size: 3rem;
-            color: #9c27b0;
-            margin-top: 15px;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* --- Airplane & Banner Animation --- */
-        .airplane-container {
-            position: absolute;
-            top: 15%;
-            left: -350px; /* Start off-screen */
-            display: flex;
-            align-items: center;
-            z-index: 5;
-            animation: flyAcross 12s linear infinite;
-        }
-
-        .airplane {
-            font-size: 2.5rem;
-            transform: rotate(15deg);
-        }
-
-        .banner {
-            background: #ab47bc;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px 4px 4px 20px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            white-space: nowrap;
-            position: relative;
-            margin-left: 5px;
-            border-left: 3px dashed #f3e5f5;
-        }
-
-        /* --- Keyframes Animations --- */
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        @keyframes flyAcross {
-            0% {
-                left: -350px;
-                top: 15%;
-            }
-            50% {
-                top: 25%; /* Slight dip in flight */
-            }
-            100% {
-                left: 100%;
-                top: 10%;
-            }
-        }
-
-        /* Generated Floating Items */
-        .float-item {
-            position: absolute;
-            bottom: -50px;
-            opacity: 0;
-            animation: floatUp 8s linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-105vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>I'm Sorry Baby ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Poppins,sans-serif;
+min-height:100svh;
+overflow-x:hidden;overflow-y:auto;
+padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+display:flex;justify-content:center;align-items:center;
+background:linear-gradient(-45deg,#ff6b81,#ff9ff3,#f368e0,#ff7675);
+background-size:400% 400%;animation:bg 12s ease infinite;
+}
+@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.container{width:min(92%,850px);margin:30px 0;background:rgba(255,255,255,.15);backdrop-filter:blur(18px);border-radius:24px;padding:30px 20px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+h1{font-family:"Great Vibes",cursive;color:#fff;font-size:clamp(2.8rem,8vw,4.8rem)}
+.subtitle{height:36px;color:#fff;margin:14px 0;font-size:18px}
+.message{color:#fff;font-size:clamp(16px,4vw,21px);line-height:1.8;max-width:650px;margin:auto}
+.love{margin-top:18px;color:#fff;font-size:clamp(24px,5vw,38px);animation:beat 1.2s infinite}
+@keyframes beat{50%{transform:scale(1.08)}}
+.teddy,.rose{font-size:60px}
+button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;font-size:20px;font-weight:700;color:#ff4d6d;background:#fff;cursor:pointer}
+.heart,.spark,.petal,.star{position:fixed;pointer-events:none}
+.heart{animation:float linear infinite}
+@keyframes float{from{transform:translateY(110vh)}to{transform:translateY(-15vh)}}
+.spark{width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 2s infinite}
+@keyframes twinkle{50%{transform:scale(3);opacity:.2}}
+.petal{font-size:18px;animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(110vh) rotate(360deg)}}
+.star{width:100px;height:2px;background:#fff;transform:rotate(-35deg);animation:shoot 8s linear infinite}
+@keyframes shoot{from{left:-20vw;top:0}to{left:120vw;top:100vh}}
+</style>
 </head>
 <body>
-
-    <!-- Airplane with Text Banner -->
-    <div class="airplane-container">
-        <div class="airplane">✈️</div>
-        <div class="banner">I am coming to you soon! ✨</div>
-    </div>
-
-    <!-- Main Apology Card -->
-    <div class="card">
-        <h1>I am sorry, baby 🥺</h1>
-        <p>I love you so much</p>
-        <div class="heart-icon">💜</div>
-    </div>
-
-    <!-- Container for floating elements -->
-    <div class="floating-container" id="floatingContainer"></div>
-
-    <script>
-        // Array of items to float in the background (Purple hearts and UK Flags)
-        const items = ['💜', 'My Baby Narmeen', '🔮', '✨', '🪻','Shona','Bébé','🐝'];
-        const container = document.getElementById('floatingContainer');
-
-        function createFloatingItem() {
-            const item = document.createElement('div');
-            item.classList.add('float-item');
-            
-            // Randomly select an emoji from the array
-            item.innerText = items[Math.floor(Math.random() * items.length)];
-            
-            // Randomize horizontal position (0 to 100% of viewport width)
-            item.style.left = Math.random() * 100 + 'vw';
-            
-            // Randomize size (between 1.5rem and 3rem)
-            const size = (Math.random() * 1.5) + 1.5;
-            item.style.fontSize = `${size}rem`;
-            
-            // Randomize animation duration to make it look natural (between 6s and 12s)
-            const duration = (Math.random() * 6) + 6;
-            item.style.animationDuration = `${duration}s`;
-            
-            // Randomize animation delay so they don't all start at once
-            item.style.animationDelay = `${Math.random() * 5}s`;
-
-            container.appendChild(item);
-
-            // Remove element after animation finishes to keep the DOM clean
-            setTimeout(() => {
-                item.remove();
-            }, (duration + 5) * 1000);
-        }
-
-        // Generate initial batch of floating elements
-        for (let i = 0; i < 20; i++) {
-            createFloatingItem();
-        }
-
-        // Keep generating new elements over time
-        setInterval(createFloatingItem, 600);
-    </script>
-</body>
-</html>
+<div class="container">
+<div class="teddy">🧸</div>
+<h1>I'm Sorry, Baby ❤️</h1>
+<div class="subtitle" id="typing"></div>
+<div class="message">
+<p>My Dearest Baby,</p><br>
+<p>I'm truly sorry. If I could take away every moment that hurt you, I would. You are the most precious person in my life, and every heartbeat reminds me how deeply I love you.</p><br>
+<p>You are my happiness, my peace, my smile, and my favorite person. I know I'm not perfect, but I promise to keep becoming a better man for you every single day.</p><br>
+<p>Thank you for being you. I love you more than words could ever describe. ❤️</p>
+</div>
+<div class="rose">🌹</div>
+<div class="love">I Love You The Most, Baby 💖</div>
+<button onclick="openSnapchat()">Forgive Me? 🥺💗</button>
+</div>
+<script>
+const txt="Every love story is beautiful... but ours is my favorite ❤️";let i=0;
+(function t(){if(i<txt.length){typing.textContent+=txt[i++];setTimeout(t,60)}})();
+for(let i=0;i<35;i++){let e=document.createElement('div');e.className='heart';e.textContent=Math.random()>.5?'❤':'💖';e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*24)+'px';e.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(e);}
+for(let i=0;i<50;i++){let s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';document.body.appendChild(s);}
+for(let i=0;i<20;i++){let p=document.createElement('div');p.className='petal';p.textContent='🌹';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(p);}
+for(let i=0;i<3;i++){let st=document.createElement('div');st.className='star';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
+function openSnapchat(){const username="bhxvesh11";location.href=`snapchat://add/${username}`;setTimeout(()=>location.href=`https://www.snapchat.com/add/${username}`,1800);}
+</script>
+</body></html>
