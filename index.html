@@ -17,15 +17,38 @@ background:linear-gradient(-45deg,#ff6b81,#ff9ff3,#f368e0,#ff7675);
 background-size:400% 400%;animation:bg 12s ease infinite;
 }
 @keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-.container{width:min(92%,850px);margin:30px 0;background:rgba(255,255,255,.15);backdrop-filter:blur(18px);border-radius:24px;padding:30px 20px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+
+/* Main Card Container */
+.container{
+width:min(92%,850px);
+margin:30px 0;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(18px);
+border-radius:24px;
+padding:30px 20px;
+text-align:center;
+box-shadow:0 20px 60px rgba(0,0,0,.25);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Class applied via JS to fade out the main card */
+.fade-out {
+opacity: 0;
+transform: scale(0.9) translateY(-20px);
+pointer-events: none;
+}
+
 h1{font-family:"Great Vibes",cursive;color:#fff;font-size:clamp(2.8rem,8vw,4.8rem)}
 .subtitle{height:36px;color:#fff;margin:14px 0;font-size:18px}
 .message{color:#fff;font-size:clamp(16px,4vw,21px);line-height:1.8;max-width:650px;margin:auto}
 .love{margin-top:18px;color:#fff;font-size:clamp(24px,5vw,38px);animation:beat 1.2s infinite}
 @keyframes beat{50%{transform:scale(1.08)}}
 .teddy,.rose{font-size:60px}
-button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;font-size:20px;font-weight:700;color:#ff4d6d;background:#fff;cursor:pointer}
-.heart,.spark,.petal,.star{position:fixed;pointer-events:none}
+button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;font-size:20px;font-weight:700;color:#ff4d6d;background:#fff;cursor:pointer;box-shadow: 0 8px 20px rgba(0,0,0,0.15);transition: transform 0.2s;}
+button:active{transform: scale(0.96);}
+
+/* Ambient Background Animations */
+.heart,.spark,.petal,.star{position:fixed;pointer-events:none;z-index: 1;}
 .heart{animation:float linear infinite}
 @keyframes float{from{transform:translateY(110vh)}to{transform:translateY(-15vh)}}
 .spark{width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 2s infinite}
@@ -34,10 +57,112 @@ button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;f
 @keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(110vh) rotate(360deg)}}
 .star{width:100px;height:2px;background:#fff;transform:rotate(-35deg);animation:shoot 8s linear infinite}
 @keyframes shoot{from{left:-20vw;top:0}to{left:120vw;top:100vh}}
+
+/* NEW: Fullscreen Hugging Celebration Screen */
+.hug-screen {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+z-index: 10;
+opacity: 0;
+visibility: hidden;
+transition: opacity 1s ease;
+text-align: center;
+padding: 20px;
+}
+
+.hug-screen.active {
+opacity: 1;
+visibility: visible;
+}
+
+/* Hugging Character Animations */
+.hug-container {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+margin-bottom: 20px;
+position: relative;
+}
+
+.person {
+font-size: clamp(70px, 15vw, 110px);
+animation: embrace 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.person-left {
+transform: translateX(-100px);
+}
+
+.person-right {
+transform: translateX(100px);
+}
+
+@keyframes embrace {
+to { transform: translateX(0); }
+}
+
+.big-heart {
+position: absolute;
+font-size: clamp(40px, 8vw, 60px);
+opacity: 0;
+transform: scale(0);
+animation: popHeart 1s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, beat 1.2s 2s infinite;
+}
+
+@keyframes popHeart {
+to { opacity: 1; transform: scale(1); }
+}
+
+.hug-title {
+font-family: "Great Vibes", cursive;
+color: #fff;
+font-size: clamp(3rem, 9vw, 5rem);
+text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+opacity: 0;
+transform: translateY(20px);
+animation: fadeInUp 0.8s 1.4s forwards;
+}
+
+.hug-text {
+color: #fff;
+font-size: clamp(18px, 4vw, 24px);
+font-weight: 500;
+margin-top: 10px;
+opacity: 0;
+transform: translateY(20px);
+animation: fadeInUp 0.8s 1.8s forwards;
+}
+
+@keyframes fadeInUp {
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Burst explosion hearts */
+.burst-heart {
+position: absolute;
+pointer-events: none;
+font-size: 24px;
+animation: burstOut 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes burstOut {
+0% { transform: translate(0, 0) scale(0); opacity: 1; }
+100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+}
 </style>
 </head>
 <body>
-<div class="container">
+
+<!-- Main Apology Card -->
+<div class="container" id="mainCard">
 <div class="teddy">🧸</div>
 <h1>I'm Sorry, Baby ❤️</h1>
 <div class="subtitle" id="typing"></div>
@@ -49,34 +174,75 @@ button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;f
 </div>
 <div class="rose">🌹</div>
 <div class="love">I Love You The Most, Baby 💖</div>
-<button onclick="openSnapchat()">Forgive Me? 🥺💗</button>
+<button onclick="forgiveAnimation()">Forgive Me? 🥺💗</button>
 </div>
+
+<!-- Hidden Hugging Animation Screen -->
+<div class="hug-screen" id="hugScreen">
+    <div class="hug-container">
+        <div class="person person-left">🧑‍🤝‍🧑</div>
+        <div class="big-heart">💖</div>
+    </div>
+    <h1 class="hug-title">Yay! Thank You Baby!</h1>
+    <p class="hug-text">You just made my world bright again. I love you! 💖✨</p>
+</div>
+
 <script>
-    const txt="Every love story is beautiful... but ours is my favorite ❤️";let i=0;
-    (function t(){if(i<txt.length){typing.textContent+=txt[i++];setTimeout(t,60)}})();
+// Typing effect
+const txt="Every love story is beautiful... but ours is my favorite ❤️";let i=0;
+(function t(){if(i<txt.length){typing.textContent+=txt[i++];setTimeout(t,60)}})();
+
+// Ambient animations background
+for(let i=0;i<35;i++){let e=document.createElement('div');e.className='heart';e.textContent=Math.random()>.5?'❤':'💖';e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*24)+'px';e.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(e);}
+for(let i=0;i<50;i++){let s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';document.body.appendChild(s);}
+for(let i=0;i<20;i++){let p=document.createElement('div');p.className='petal';p.textContent='🌹';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(p);}
+for(let i=0;i<3;i++){let st=document.createElement('div');st.className='star';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
+
+// Triggered when she forgives you
+function forgiveAnimation() {
+    // 1. Fade out the old text panel smoothly
+    document.getElementById('mainCard').classList.add('fade-out');
     
-    // Particle generation animations
-    for(let i=0;i<35;i++){let e=document.createElement('div');e.className='heart';e.textContent=Math.random()>.5?'❤':'💖';e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*24)+'px';e.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(e);}
-    for(let i=0;i<50;i++){let s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';document.body.appendChild(s);}
-    for(let i=0;i<20;i++){let p=document.createElement('div');p.className='petal';p.textContent='🌹';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(p);}
-    for(let i=0;i<3;i++){let st=document.createElement('div');st.className='star';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
+    // 2. Bring up the fullscreen hug setup
+    const hugScreen = document.getElementById('hugScreen');
+    hugScreen.classList.add('active');
     
-    // FIXED SNAPCHAT FUNCTION
-    function openSnapchat(){
-        const username = "bhxvesh11"; // <-- Make sure to replace this with your actual username!
-        const isSnapchat = /Snapchat/i.test(navigator.userAgent);
+    // 3. Fire off a beautiful burst explosion of confetti hearts
+    createHeartBurst();
+}
+
+// Generates an explosive burst of flying hearts from the center
+function createHeartBurst() {
+    const emojis = ['❤️', '💖', '💝', '💕', '🌸', '🥰'];
+    const totalHearts = 40;
+    
+    for (let i = 0; i < totalHearts; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'burst-heart';
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         
-        if (isSnapchat) {
-            // If already inside Snapchat, just route via the standard web URL. 
-            // The app's browser will natively capture this and open your profile.
-            window.location.href = `https://www.snapchat.com/add/${username}`;
-        } else {
-            // Fallback for external browsers (Safari, Chrome, etc.)
-            window.location.href = `snapchat://add/${username}`;
-            setTimeout(() => {
-                window.location.href = `https://www.snapchat.com/add/${username}`;
-            }, 1800);
-        }
+        // Calculate random directions around the center coordinates
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 100 + Math.random() * 250; // Distance traveled outward
+        const tx = Math.cos(angle) * distance + 'px';
+        const ty = Math.sin(angle) * distance + 'px';
+        
+        heart.style.setProperty('--tx', tx);
+        heart.style.setProperty('--ty', ty);
+        
+        // Position exactly in the middle of the screen
+        heart.style.left = '50%';
+        heart.style.top = '50%';
+        
+        // Dynamic slight speeds
+        heart.style.animationDelay = (Math.random() * 0.3) + 's';
+        
+        document.body.appendChild(heart);
+        
+        // Cleanup memory after animation finishes
+        setTimeout(() => heart.remove(), 1800);
     }
-    </script>
-</body></html>
+}
+</script>
+</body>
+</html>
