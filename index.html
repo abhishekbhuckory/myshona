@@ -1,248 +1,890 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>My Baby ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<title>For My Shona ❤️</title>
+
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+
 body{
-font-family:Poppins,sans-serif;
-min-height:100svh;
-overflow-x:hidden;overflow-y:auto;
-padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
-display:flex;justify-content:center;align-items:center;
-background:linear-gradient(-45deg,#ff6b81,#ff9ff3,#f368e0,#ff7675);
-background-size:400% 400%;animation:bg 12s ease infinite;
-}
-@keyframes bg{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
 
-/* Main Card Container */
+    min-height:100vh;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at top,#64204f,#080808);
+
+    color:white;
+
+}
+
+
 .container{
-width:min(92%,850px);
-margin:30px 0;
-background:rgba(255,255,255,.15);
-backdrop-filter:blur(18px);
-border-radius:24px;
-padding:30px 20px;
-text-align:center;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-transition: opacity 0.8s ease, transform 0.8s ease;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+
+    text-align:center;
+
 }
 
-/* Class applied via JS to fade out the main card */
-.fade-out {
-opacity: 0;
-transform: scale(0.9) translateY(-20px);
-pointer-events: none;
+
+.page{
+
+    width:100%;
+    max-width:390px;
+
 }
 
-h1{font-family:"Great Vibes",cursive;color:#fff;font-size:clamp(2.8rem,8vw,4.8rem)}
-.subtitle{height:36px;color:#fff;margin:14px 0;font-size:18px}
-.message{color:#fff;font-size:clamp(16px,4vw,21px);line-height:1.8;max-width:650px;margin:auto}
-.love{margin-top:18px;color:#fff;font-size:clamp(24px,5vw,38px);animation:beat 1.2s infinite}
-@keyframes beat{50%{transform:scale(1.08)}}
-.teddy,.rose{font-size:60px}
-button{margin-top:28px;width:100%;padding:18px;border:none;border-radius:999px;font-size:20px;font-weight:700;color:#ff4d6d;background:#fff;cursor:pointer;box-shadow: 0 8px 20px rgba(0,0,0,0.15);transition: transform 0.2s;}
-button:active{transform: scale(0.96);}
 
-/* Ambient Background Animations */
-.heart,.spark,.petal,.star{position:fixed;pointer-events:none;z-index: 1;}
-.heart{animation:float linear infinite}
-@keyframes float{from{transform:translateY(110vh)}to{transform:translateY(-15vh)}}
-.spark{width:3px;height:3px;border-radius:50%;background:#fff;animation:twinkle 2s infinite}
-@keyframes twinkle{50%{transform:scale(3);opacity:.2}}
-.petal{font-size:18px;animation:fall linear infinite}
-@keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(110vh) rotate(360deg)}}
-.star{width:100px;height:2px;background:#fff;transform:rotate(-35deg);animation:shoot 8s linear infinite}
-@keyframes shoot{from{left:-20vw;top:0}to{left:120vw;top:100vh}}
 
-/* NEW: Fullscreen Hugging Celebration Screen */
-.hug-screen {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-z-index: 10;
-opacity: 0;
-visibility: hidden;
-transition: opacity 1s ease;
-text-align: center;
-padding: 20px;
+/* FLOATING PARTICLES */
+
+
+.particle{
+
+    position:fixed;
+
+    width:7px;
+    height:7px;
+
+    background:#ff9fcf;
+
+    border-radius:50%;
+
+    opacity:.8;
+
+    animation:float 8s linear infinite;
+
 }
 
-.hug-screen.active {
-opacity: 1;
-visibility: visible;
+
+@keyframes float{
+
+    from{
+        transform:translateY(100vh) scale(.5);
+    }
+
+
+    to{
+        transform:translateY(-20vh) scale(1.5);
+    }
+
 }
 
-/* Hugging Character Animations */
-.hug-container {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-margin-bottom: 20px;
-position: relative;
+
+
+/* MUSIC */
+
+.music{
+
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    border:none;
+
+    background:#ff5fa2;
+
+    color:white;
+
+    border-radius:50%;
+
+    width:45px;
+    height:45px;
+
+    font-size:20px;
+
 }
 
-.person {
-font-size: clamp(70px, 15vw, 110px);
-animation: embrace 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
+
+/* ENVELOPE */
+
+
+.envelope{
+
+    width:280px;
+
+    height:190px;
+
+    margin:auto;
+
+    position:relative;
+
+    cursor:pointer;
+
+    perspective:1000px;
+
 }
 
-.person-left {
-transform: translateX(-100px);
+
+
+.body{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+
+    height:140px;
+
+    background:#ff6fae;
+
+    border-radius:10px;
+
 }
 
-.person-right {
-transform: translateX(100px);
+
+
+.flap{
+
+    position:absolute;
+
+    top:0;
+
+    width:100%;
+
+    height:120px;
+
+    background:#ff9ac8;
+
+    clip-path:polygon(0 0,100% 0,50% 100%);
+
+    transform-origin:top;
+
+    transition:1.2s;
+
+    z-index:5;
+
 }
 
-@keyframes embrace {
-to { transform: translateX(0); }
+
+
+.paper{
+
+    position:absolute;
+
+    width:90%;
+
+    height:150px;
+
+    left:5%;
+
+    bottom:0;
+
+    background:white;
+
+    color:#444;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:1s;
+
 }
 
-.big-heart {
-position: absolute;
-font-size: clamp(40px, 8vw, 60px);
-opacity: 0;
-transform: scale(0);
-animation: popHeart 1s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, beat 1.2s 2s infinite;
+
+
+.open .flap{
+
+    transform:rotateX(180deg);
+
 }
 
-@keyframes popHeart {
-to { opacity: 1; transform: scale(1); }
+
+
+.open .paper{
+
+    opacity:1;
+
+    transform:translateY(-70px);
+
 }
 
-.hug-title {
-font-family: "Great Vibes", cursive;
-color: #fff;
-font-size: clamp(3rem, 9vw, 5rem);
-text-shadow: 0 4px 15px rgba(0,0,0,0.2);
-opacity: 0;
-transform: translateY(20px);
-animation: fadeInUp 0.8s 1.4s forwards;
+
+
+.touch{
+
+    margin-top:30px;
+
+    animation:pulse 1.5s infinite;
+
 }
 
-.hug-text {
-color: #fff;
-font-size: clamp(18px, 4vw, 24px);
-font-weight: 500;
-margin-top: 10px;
-opacity: 0;
-transform: translateY(20px);
-animation: fadeInUp 0.8s 1.8s forwards;
+
+
+@keyframes pulse{
+
+    50%{
+
+        transform:scale(1.1);
+
+    }
+
 }
 
-@keyframes fadeInUp {
-to { opacity: 1; transform: translateY(0); }
+
+
+
+
+/* HEART */
+
+
+.heart{
+
+    font-size:90px;
+
+    cursor:pointer;
+
+    animation:beat 1.4s infinite;
+
 }
 
-/* Burst explosion hearts */
-.burst-heart {
-position: absolute;
-pointer-events: none;
-font-size: 24px;
-animation: burstOut 1.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+
+
+@keyframes beat{
+
+    50%{
+
+        transform:scale(1.2);
+
+    }
+
 }
 
-@keyframes burstOut {
-0% { transform: translate(0, 0) scale(0); opacity: 1; }
-100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+
+
+
+/* MESSAGE */
+
+
+.message{
+
+    display:none;
+
+    margin-top:30px;
+
 }
+
+
+
+.typing{
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    min-height:220px;
+
+}
+
+
+
+
+button{
+
+    margin-top:25px;
+
+    padding:15px 30px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:
+
+    linear-gradient(45deg,#ff4f9a,#ff9ac8);
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+
+
+
+
+/* COUPLE END */
+
+
+.coupleScene{
+
+    display:none;
+
+    margin-top:40px;
+
+    animation:fade 2s;
+
+}
+
+
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+
+
+.sun{
+
+    font-size:50px;
+
+    animation:spin 10s linear infinite;
+
+}
+
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+.boy,
+.girl{
+
+    display:inline-block;
+
+    font-size:75px;
+
+    position:relative;
+
+    animation:bounce 2s infinite;
+
+}
+
+
+
+.girl{
+
+    animation-delay:.5s;
+
+}
+
+
+
+@keyframes bounce{
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+}
+
+
+
+.heartFloat{
+
+    position:absolute;
+
+    top:-20px;
+
+    font-size:25px;
+
+    animation:heartUp 3s infinite;
+
+}
+
+
+
+@keyframes heartUp{
+
+
+from{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+to{
+
+    opacity:0;
+
+    transform:translateY(-80px);
+
+}
+
+
+}
+
+
+
+.ground{
+
+    width:220px;
+
+    height:15px;
+
+    margin:10px auto 30px;
+
+    background:#ff9fcf;
+
+    border-radius:50%;
+
+}
+
+
 </style>
+
 </head>
+
+
+
 <body>
 
-<!-- Main Apology Card -->
-<div class="container" id="mainCard">
-<div class="teddy">🧸</div>
-<h1>I'm Sorry, Baby ❤️</h1>
-<div class="subtitle" id="typing"></div>
-<div class="message">
-<p>My Dearest Baby,</p><br>
-<p>I'm truly sorry. If I could take away every moment that hurt you, I would. You are the most precious person in my life, and every heartbeat reminds me how deeply I love you.</p><br>
-<p>You are my happiness, my peace, my smile, and my favorite person. I know I'm not perfect, but I promise to keep becoming a better man for you every single day.</p><br>
-<p>Thank you for being you. I love you more than words could ever describe. ❤️</p>
-</div>
-<div class="rose">🌹</div>
-<div class="love">I Love You The Most, Baby 💖</div>
-<button onclick="forgiveAnimation()">Forgive Me? 🥺💗</button>
+
+
+<button class="music" onclick="musicToggle()">
+
+🎵
+
+</button>
+
+
+
+<audio id="music" loop>
+
+<!-- Add your music file here -->
+
+<!-- <source src="song.mp3"> -->
+
+</audio>
+
+
+
+
+<div class="container">
+
+
+<div class="page">
+
+
+
+<div id="start">
+
+
+<div class="envelope" onclick="openEnvelope(this)">
+
+
+<div class="flap"></div>
+
+
+<div class="body"></div>
+
+
+<div class="paper">
+
+💌
+
+<br><br>
+
+For My Baby...
+
 </div>
 
-<!-- Hidden Hugging Animation Screen -->
-<div class="hug-screen" id="hugScreen">
-    <div class="hug-container">
-        <div class="person person-left">🧑‍🤝‍🧑</div>
-        <div class="big-heart">💖</div>
-    </div>
-    <h1 class="hug-title">Yay! Thank You Baby!</h1>
-    <p class="hug-text">You just made my world bright again. I love you! 💖✨</p>
+
 </div>
+
+
+
+<div class="touch">
+
+Touch the envelope ❤️
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="heartPage" style="display:none">
+
+
+<div class="heart" onclick="openLetter()">
+
+❤️
+
+</div>
+
+
+<div class="touch">
+
+Touch my heart
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="message" id="message">
+
+
+<h2>
+
+My Shona ❤️
+
+</h2>
+
+
+<br>
+
+
+<p class="typing" id="text"></p>
+
+
+
+<button onclick="forgiveAnimation()">
+
+Touch to forgive me ❤️
+
+</button>
+
+
+
+<div class="coupleScene" id="coupleScene">
+
+
+<div class="sun">
+
+☀️
+
+</div>
+
+
+
+<div>
+
+
+<div class="boy">
+
+🧑🏻
+
+<div class="heartFloat">
+
+❤️
+
+</div>
+
+</div>
+
+
+<div class="girl">
+
+👩🏻
+
+<div class="heartFloat">
+
+❤️
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="ground"></div>
+
+
+
+<h2>
+
+Thank you for choosing us ❤️
+
+</h2>
+
+
+
+<p style="line-height:1.8;margin-top:20px">
+
+
+I don't promise to be perfect...
+
+<br><br>
+
+
+But I promise to keep learning,
+
+keep caring,
+
+and keep choosing you.
+
+<br><br>
+
+
+You are someone precious to me.
+
+<br><br>
+
+
+I love you, Baybee ❤️
+
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
 
 <script>
-// Typing effect
-const txt="Every love story is beautiful... but ours is my favorite ❤️";let i=0;
-(function t(){if(i<txt.length){typing.textContent+=txt[i++];setTimeout(t,60)}})();
 
-// Ambient animations background
-for(let i=0;i<35;i++){let e=document.createElement('div');e.className='heart';e.textContent=Math.random()>.5?'❤':'💖';e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*24)+'px';e.style.animationDuration=(6+Math.random()*6)+'s';document.body.appendChild(e);}
-for(let i=0;i<50;i++){let s=document.createElement('div');s.className='spark';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2+'s';document.body.appendChild(s);}
-for(let i=0;i<20;i++){let p=document.createElement('div');p.className='petal';p.textContent='🌹';p.style.left=Math.random()*100+'vw';p.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(p);}
-for(let i=0;i<3;i++){let st=document.createElement('div');st.className='star';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
 
-// Triggered when she forgives you
-function forgiveAnimation() {
-    // 1. Fade out the old text panel smoothly
-    document.getElementById('mainCard').classList.add('fade-out');
-    
-    // 2. Bring up the fullscreen hug setup
-    const hugScreen = document.getElementById('hugScreen');
-    hugScreen.classList.add('active');
-    
-    // 3. Fire off a beautiful burst explosion of confetti hearts
-    createHeartBurst();
+
+// particles
+
+
+for(let i=0;i<60;i++){
+
+
+let p=document.createElement("div");
+
+
+p.className="particle";
+
+
+p.style.left=Math.random()*100+"%";
+
+
+p.style.animationDelay=Math.random()*8+"s";
+
+
+p.style.animationDuration=(5+Math.random()*8)+"s";
+
+
+document.body.appendChild(p);
+
+
 }
 
-// Generates an explosive burst of flying hearts from the center
-function createHeartBurst() {
-    const emojis = ['❤️', '💖', '💝', '💕', '🌸', '🥰'];
-    const totalHearts = 40;
-    
-    for (let i = 0; i < totalHearts; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'burst-heart';
-        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        // Calculate random directions around the center coordinates
-        const angle = Math.random() * Math.PI * 2;
-        const distance = 100 + Math.random() * 250; // Distance traveled outward
-        const tx = Math.cos(angle) * distance + 'px';
-        const ty = Math.sin(angle) * distance + 'px';
-        
-        heart.style.setProperty('--tx', tx);
-        heart.style.setProperty('--ty', ty);
-        
-        // Position exactly in the middle of the screen
-        heart.style.left = '50%';
-        heart.style.top = '50%';
-        
-        // Dynamic slight speeds
-        heart.style.animationDelay = (Math.random() * 0.3) + 's';
-        
-        document.body.appendChild(heart);
-        
-        // Cleanup memory after animation finishes
-        setTimeout(() => heart.remove(), 1800);
-    }
+
+
+
+function openEnvelope(el){
+
+
+el.classList.add("open");
+
+
+setTimeout(()=>{
+
+
+document.getElementById("start").style.display="none";
+
+
+document.getElementById("heartPage").style.display="block";
+
+
+},1500);
+
+
+
 }
+
+
+
+
+function openLetter(){
+
+
+document.getElementById("heartPage").style.display="none";
+
+
+document.getElementById("message").style.display="block";
+
+
+
+let text=
+
+"I know last night hurt you... ❤️\n\n"+
+
+"You needed me and I wasn't there the way you needed.\n\n"+
+
+"Even though we don't live together, I should have made you feel cared for.\n\n"+
+
+"I'm sorry for making you feel like you cannot rely on me.\n\n"+
+
+"I am not making excuses.\n\n"+
+
+"I cannot change last night, but I can learn from it.\n\n"+
+
+"I want my actions to show you that you matter to me.";
+
+
+
+
+
+typeWriter(text);
+
+
+
+}
+
+
+
+
+
+function typeWriter(text){
+
+
+let i=0;
+
+
+let output=document.getElementById("text");
+
+
+
+let timer=setInterval(()=>{
+
+
+output.innerHTML += text[i]=="\n" ? "<br>" : text[i];
+
+
+i++;
+
+
+if(i>=text.length)
+
+clearInterval(timer);
+
+
+
+},35);
+
+
+
+}
+
+
+
+
+
+function forgiveAnimation(){
+
+
+document.querySelector("button").style.display="none";
+
+
+document.getElementById("text").innerHTML=
+
+"❤️ Thank you for listening to my heart ❤️";
+
+
+
+setTimeout(()=>{
+
+
+document.getElementById("coupleScene").style.display="block";
+
+
+},1200);
+
+
+
+}
+
+
+
+
+function musicToggle(){
+
+
+let m=document.getElementById("music");
+
+
+if(m.paused)
+
+m.play();
+
+
+else
+
+m.pause();
+
+
+
+}
+
+
+
 </script>
+
+
+
 </body>
+
 </html>
